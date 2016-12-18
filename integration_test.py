@@ -4,12 +4,13 @@ import urllib2
 BASE_URL = 'http://jessan.pythonanywhere.com/'
 
 class TicTacToeIntegrationTest(unittest.TestCase):
-    """docstring for TicTacToeIntegrationTest."""
+    """Verifies the live server, comparing actual to expected response."""
 
     def testBasic(self):
-        self.assertResponse('board=', '         ')
+        # Useful for copy paste, 9 space string: '         '
+        self.assertResponse('board=', '')
 
-    def testBoardNotset(self):
+    def testBoardNotSet(self):
         self.assertHttpError('')
 
     def assertResponse(self, request_data, expected_response):
