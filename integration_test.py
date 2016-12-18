@@ -10,7 +10,7 @@ class TicTacToeIntegrationTest(unittest.TestCase):
         # Useful for copy paste, 9 space string: '         '
         self.assertResponse('board=', '')
 
-    def testBoardNotset(self):
+    def testBoardNotSet(self):
         self.assertHttpError('')
 
     def assertResponse(self, request_data, expected_response):
