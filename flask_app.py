@@ -5,8 +5,8 @@ app = Flask(__name__)
 BOARD_PARAM = 'board'
 
 @app.route('/')
-def Tictactoe():
+def TicTacToe():
     if BOARD_PARAM not in request.args:
       abort(400)
     board_str = request.args.get(BOARD_PARAM)
-    return '        o'
+    return board_str
