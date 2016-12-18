@@ -2,8 +2,11 @@ from flask import Flask, request, abort
 
 app = Flask(__name__)
 
+BOARD_PARAM = 'board'
+
 @app.route('/')
 def Tictactoe():
-    if request.args.get('fail'):
+    if BOARD_PARAM not in request.args:
       abort(400)
-    return '        O'
+    board_str = request.args.get(BOARD_PARAM)
+    return '        o'
