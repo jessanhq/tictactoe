@@ -2,7 +2,7 @@ import unittest
 from board import *
 
 
-class HelperTest(unittest.TestCase):
+class BoardTest(unittest.TestCase):
     def test_emptyString(self):
         with self.assertRaises(InvalidBoard):
             FromString('')
@@ -37,9 +37,25 @@ class HelperTest(unittest.TestCase):
     def test_emptyBoard(self):
         self.assertEquals('         ', str(FromString('         ')))
 
-    def test_notMyTurn(self):
-        with self.assertRaises(NotMyTurn):
-            FromString('o        ')
+    def testWhoseTurn_X(self):
+        x_turn_board = FromString('o        ')
+        self.assertEquals({'x'}, x_turn_board.WhoseTurn())
+
+    def testWhoseTurn_O(self):
+        o_turn_board = FromString('  xox    ')
+        self.assertEquals({'o'}, o_turn_board.WhoseTurn())
+
+    def testWhoseTurn_Empty(self):
+        either_turn_board = FromString('         ')
+        self.assertEquals({'o', 'x'}, either_turn_board.WhoseTurn())
+
+    def testWhoseTurn_Either(self):
+        either_turn_board = FromString('xo       ')
+        self.assertEquals({'o', 'x'}, either_turn_board.WhoseTurn())
+
+    def testWhoseTurn_GameOver(self):
+        finished_board = FromString('xoxoxoxox')
+        self.assertEquals({}, finished_board.WhoseTurn())
 
 if __name__ == "__main__":
     unittest.main(exit=False)
