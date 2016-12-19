@@ -2,6 +2,10 @@
 class InvalidBoard(Exception):
     pass
 
+
+class InvalidMove(Exception):
+    pass
+
 _VALID_PLACE_CHARACTERS = frozenset({'x', ' ', 'o'})
 _VICTORY_POSITIONS = (
     (0, 1, 2), (3, 4, 5), (6, 7, 8),  # Horizontal
@@ -70,3 +74,20 @@ class Board(object):
             return {'o'}
         else:
             return {'x'}
+
+    def ValidMoves(self):
+        """Yields valid positions."""
+        for i in range(0, len(self.board_str)):
+            if self.board_str[i] == ' ':
+                yield i
+
+
+    def MakeMove(self, pos, letter):
+        """Returns a new board with the position filled with the letter."""
+        if letter not in ('x', 'o'):
+            raise InvalidMove('Invalid letter')
+        if self.board_str[pos] != ' ':
+            raise InvalidMove('Invalid position')
+        mutable_board = list(self.board_str)
+        mutable_board[pos] = letter
+        return FromString(''.join(mutable_board))

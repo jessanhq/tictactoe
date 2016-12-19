@@ -15,4 +15,6 @@ class Player(object):
         """Takes a Board and makes a valid move."""
         if self.letter not in board.WhoseTurn():
             raise NotMyTurn()
-        return board
+        moves = list(board.ValidMoves())
+        newBoard = board.MakeMove(moves[0], self.letter)
+        return newBoard

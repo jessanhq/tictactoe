@@ -11,6 +11,10 @@ class PlayerTest(unittest.TestCase):
         Player(LETTER_O).Play(EMPTY_BOARD)
         Player(LETTER_X).Play(EMPTY_BOARD)
 
+    def testPlay_empty(self):
+        new_board_str = str(Player(LETTER_O).Play(EMPTY_BOARD))
+        self.assertTrue(LETTER_O in new_board_str)
+
     def testPlay_NotOTurn(self):
         with self.assertRaises(NotMyTurn):
             Player(LETTER_O).Play(board.FromString('o        '))
