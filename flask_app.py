@@ -15,7 +15,7 @@ def TicTacToe():
     if BOARD_PARAM not in request.args:
         abort(400)
     try:
-        current_board = board.FromString(request.args.get(BOARD_PARAM)
+        current_board = board.FromString(request.args.get(BOARD_PARAM))
     except board.InvalidBoard:
         abort(400)
     try:
