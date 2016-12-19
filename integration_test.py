@@ -7,8 +7,7 @@ class TicTacToeIntegrationTest(unittest.TestCase):
     """Verifies the live server, comparing actual to expected response."""
 
     def testBasic(self):
-        # Useful for copy paste, 9 space string: '         '
-        self.assertResponse('board=', '')
+        self.assertResponse('board=+xoxx+o+o', 'oxoxx o o')
 
     def testBoardNotSet(self):
         self.assertHttpError('')

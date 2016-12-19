@@ -19,6 +19,6 @@ def TicTacToe():
     except board.InvalidBoard:
         abort(400)
     try:
-        return player.Player(player.LETTER_O).Play(current_board)
-    except player.NotMyTurn:
+        return str(player.Player(player.LETTER_O).Play(current_board))
+    except player.NotMyTurn:  # InvalidMove is a progrmaming error.
         abort(400)
