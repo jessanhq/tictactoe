@@ -1,14 +1,13 @@
 import unittest  # HACK: Although this isn't a unit test, this works.
 import urllib2
 
-BASE_URL = 'http://jessan.pythonanywhere.com/'
+BASE_URL = 'http://127.0.0.1:5000/' or 'http://jessan.pythonanywhere.com/'
 
 class TicTacToeIntegrationTest(unittest.TestCase):
     """Verifies the live server, comparing actual to expected response."""
 
     def testBasic(self):
-        # Useful for copy paste, 9 space string: '         '
-        self.assertResponse('board=', '')
+        self.assertResponse('board=+xoxx+o+o', 'oxoxx o o')
 
     def testBoardNotSet(self):
         self.assertHttpError('')
